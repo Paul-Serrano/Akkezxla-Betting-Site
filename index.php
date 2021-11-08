@@ -1,30 +1,3 @@
-<?php
-
-if(isset($_POST['bet-form'])){
-
-        $header = "";
-        $header="MIME-Version: 1.0\r\n";
-        $header.='From:"Bet Site"'."\n";
-$header.='Content-Type:text/html; charset="utf-8"'."\n";
-$header.='Content-Transfer-Encoding: 8bit';
-$message='
-<html>
-  <body>
-    <div align="center">
-      <p>Ticket 1</p>
-      '.$_POST['match1'].' '.$_POST['match2'].' '.$_POST['match3'].' '.$_POST['match4'].' '.$_POST['match5'].'
-      <hr />
-      <p>Ticket 2:</p>
-      '.$_POST['match6'].' '.$_POST['match7'].' '.$_POST['match8'].' '.$_POST['match9'].' '.$_POST['match10'].'
-    </div>
-  </body>
-</html>
-'; 
-mail("paul.serrano08374@gmail.com", "Contact -- Portfolio !", $message,
-$header); 
-} 
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -230,7 +203,7 @@ $header);
                             </div>
                         </div>
                     </div>
-                    <button type="submit" name="bet-form" class="btn btn-light form-btn">Submit</button>
+                    <button type="button" name="bet-form" class="btn btn-light form-btn">Submit</button>
                 </form>
             </div>
         </section>
