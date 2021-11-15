@@ -7,6 +7,23 @@ img {
   max-width: 100%;
 }
 
+/* nav -- start */
+
+.nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  font-size: 1.5em;
+  text-decoration: none;
+  background-color: white;
+}
+
+.nav-link a {
+  text-decoration: none;
+}
+
+/* nav -- end */
+
 main {
   width: 100%;
   display: flex;
@@ -135,3 +152,38 @@ label p {
 .btn-result {
   width: 40%;
 }
+
+/* Sign-up page -- start */
+
+.sign-up-main {
+  height: 80vh;
+}
+
+.sign-up-form {
+  width: 50%;
+  margin: auto;
+  height: 80%;
+  font-size: 1.5em;
+}
+
+.form-group {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.sign-up-label {
+  width: 30%;
+}
+
+.sign-up-input {
+  width: 60%;
+  border: solid 1px;
+  border-radius: 0.25rem;
+}
+
+.sign-up-btn {
+  width: 20%;
+}
+
+/* Sign-up page -- end */
