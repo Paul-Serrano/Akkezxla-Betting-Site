@@ -18,6 +18,14 @@ img {
   background-color: white;
 }
 
+.nav-link:hover {
+  background-color: #00bc8c;
+}
+
+.nav-link:hover a {
+  color: white;
+}
+
 .nav-link a {
   text-decoration: none;
 }
@@ -155,11 +163,13 @@ label p {
 
 /* Sign-up page -- start */
 
-.sign-up-main {
+.sign-up-main,
+.sign-in-main {
   height: 80vh;
 }
 
-.sign-up-form {
+.sign-up-form,
+.sign-in-form {
   width: 50%;
   margin: auto;
   height: 80%;
@@ -172,17 +182,20 @@ label p {
   justify-content: space-evenly;
 }
 
-.sign-up-label {
+.sign-up-label,
+.sign-in-label {
   width: 30%;
 }
 
-.sign-up-input {
+.sign-up-input,
+.sign-in-input {
   width: 60%;
   border: solid 1px;
   border-radius: 0.25rem;
 }
 
-.sign-up-btn {
+.sign-up-btn,
+.sign-in-btn {
   width: 20%;
 }
 

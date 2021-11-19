@@ -80,7 +80,7 @@ btn.on("click", (e) => {
 
   bet.html(`
   <div class="final-bet-content">
-    <div class="name-result"><h4>${name.val()}</h4></div>
+    <div class="name-result"></div>
     <div class="ticket-result">
       <h4>Ticket 1</h4>
       <p>${match[0].innerText} : ${result1}</p>

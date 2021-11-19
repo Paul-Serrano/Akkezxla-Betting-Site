@@ -8,11 +8,11 @@ $alert = false;
 if (isset($_GET["error"])) {
     $alert = true;
     if ($_GET['error'] == "missingInput") {
-        $type = "secondary";
+        $type = "warning";
         $message = "All fields are required";
     }
     if ($_GET['error'] == "usernameExists") {
-        $type = "secondary";
+        $type = "warning";
         $message = "Already existing username !";
     }
     if ($_GET['error'] == "differentPasswords") {
@@ -31,36 +31,38 @@ if (isset($_GET['success'])) {
 
 <body>
     <main class="sign-up-main">
-        <form class="sign-up-form">
+    <?php echo $alert ? "<div class='alert alert-{$type} mt-2'>{$message}</div>" : ''; ?>
+        <form class="sign-up-form" action="sign-up_post.php" method="POST">
             <div class="form-group row">
                 <label for="username" class="col-sm-2 col-form-label sign-up-label">Username</label>
-                <input type="text" class="form-control-plaintext sign-up-input" id="username" value="">
+                <input type="text" name="username" class="form-control-plaintext sign-up-input" id="username" value="">
             </div>
             <div class="form-group row">
                 <label for="mail" class="col-sm-2 col-form-label sign-up-label">Email</label>
-                <input type="text" class="form-control-plaintext sign-up-input" id="mail" value="">
+                <input type="text" name="mail" class="form-control-plaintext sign-up-input" id="mail" value="">
             </div>
             <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label sign-up-label">Name</label>
-                <input type="text" class="form-control-plaintext sign-up-input" id="name" value="">
+                <input type="text" name="name" class="form-control-plaintext sign-up-input" id="name" value="">
             </div>
             <div class="form-group row">
                 <label for="surname" class="col-sm-2 col-form-label sign-up-label">Surname</label>
-                <input type="text" class="form-control-plaintext sign-up-input" id="surname" value="">
+                <input type="text" name="surname" class="form-control-plaintext sign-up-input" id="surname" value="">
             </div>
             <div class="form-group row">
                 <label for="team" class="col-sm-2 col-form-label sign-up-label">Favourite Team</label>
-                <input type="text" class="form-control-plaintext sign-up-input" id="team" value="">
+                <input type="text" name="team" class="form-control-plaintext sign-up-input" id="team" value="">
             </div>
             <div class="form-group row">
                 <label for="password" class="col-sm-2 col-form-label sign-up-label">Password</label>
-                <input type="text" class="form-control-plaintext sign-up-input" id="password" value="">
+                <input type="text" name="password" class="form-control-plaintext sign-up-input" id="password" value="">
             </div>
             <div class="form-group row">
                 <label for="password2" class="col-sm-2 col-form-label sign-up-label">Repeat password</label>
-                <input type="text" class="form-control-plaintext sign-up-input" id="password2" value="">
+                <input type="text" name="password2" class="form-control-plaintext sign-up-input" id="password2" value="">
             </div>
-            <button type="submit" class="btn btn-outline-info sign-up-btn">Sign Up</button>
+            <button type="submit" name="submit-sign-up" class="btn btn-outline-info sign-up-btn">Sign Up</button>            
         </form>
+        <p>Already have an account ? Go <a href="sign-in.php">Sign in !</a></p>
     </main>
 </body>

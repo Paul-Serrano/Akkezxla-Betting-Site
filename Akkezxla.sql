@@ -8,5 +8,6 @@ CREATE TABLE bet.user (
     mail VARCHAR (50) NOT NULL,
     name VARCHAR (25) NOT NULL,
     surname VARCHAR (25) NOT NULL,
+    team VARCHAR (25) NOT NULL,
     password VARCHAR (512) NOT NULL
 );
