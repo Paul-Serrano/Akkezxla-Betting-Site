@@ -1,5 +1,7 @@
 <?php
 
+require "connect.php";
+
 if(isset($_POST["submit-sign-up"])) {
     if (empty($_POST['username']) || empty($_POST['password']) || empty($_POST['password2'] ||
     empty($_POST['mail']) || empty($_POST['name']) || empty($_POST['surname']) || empty($_POST['team']))) {
@@ -20,14 +22,13 @@ if(isset($_POST["submit-sign-up"])) {
             exit();
         }
 
-        $db = new PDO('mysql:host=localhost;dbname=bet', 'root', '');
-
         $sql = "SELECT * FROM user WHERE mail = '$mail' ";
         $result = $db->prepare($sql);
         $result->execute();
 
         if($result->rowCount() > 0) {
-            echo "Already existing user ! dumb bitch ...";
+            header('Location:sign-up.php?error=usernameExists');
+            exit();
         }
         else {
             $pass = password_hash($pass, PASSWORD_DEFAULT);
@@ -38,8 +39,7 @@ if(isset($_POST["submit-sign-up"])) {
         }
 
         if ($req) {
-            $_SESSION['user'] = $username;
-            header('Location:index.php?success=loginSuccessful');
+            header('Location:sign-up.php?success=loginSuccessful');
             exit();
         }
     }

@@ -1,12 +1,11 @@
 <?php
 
-$db = new PDO('mysql:host=localhost;dbname=bet', 'root', '');
+unset($_SESSION["user"]);
+session_start();
 
-$mail = $_POST['mail'];
+require "connect.php";
+require "config.php";
 
-$sql = "SELECT * FROM user WHERE mail = '$mail' ";
-$result = $db->prepare($sql);
-$result->execute();
 
 if (empty($_POST['username']) || empty($_POST['pass'])) {
     header('Location:sign-in.php?error=missingInput');
@@ -28,7 +27,7 @@ try {
 
     $user = $reqVerifUsername->fetch();
 } catch (PDOException $e) {
-    $connexion = null;
+    $db = null;
     echo 'Erreur : '.$e->getMessage();
 }
 
@@ -38,8 +37,15 @@ if ($user) {
         exit();
     } else {
         $_SESSION['user'] = $user['username'];
+        $_SESSION['id'] = $user['id'];
+        $_SESSION['pass'] = $user['password'];
+        $_SESSION['surname'] = $user['surname'];
         header('Location:index.php');
     }
+}
+else {
+    header('Location:sign-in.php?error=userUnknown');
+    exit();
 }
         
 ?>

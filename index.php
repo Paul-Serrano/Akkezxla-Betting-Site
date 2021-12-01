@@ -1,7 +1,7 @@
 <?php
 
 include_once "_head.php";
-include_once "_nav.php"
+include_once "_nav.php";
 
 ?>
 
@@ -9,9 +9,26 @@ include_once "_nav.php"
     <main>
         <section>
             <div class="form-container">
-                <form class="form" action="" method="POST">
+                <form class="form" action="bet_post.php" method="POST">
                     <div class="form-content">
                         <div class="ticket" id="ticket1">
+                        <div class="match-block">
+                                <p class="match">Paris -- Marseille</p>
+                                <div class="bet-block">
+                                    <input id="match0-1" name="match0" type="radio" value="1" />
+                                    <label for="match0-1">
+                                        <p>1</p>
+                                    </label>
+                                    <input id="match0-N" name="match0" type="radio" value="N" />
+                                    <label for="match0-N">
+                                        <p>Nul</p>
+                                    </label>
+                                    <input id="match0-2" name="match0" type="radio" value="2" />
+                                    <label for="match0-2">
+                                        <p>2</p>
+                                    </label>
+                                </div>
+                            </div>
                             <div class="match-block">
                                 <p class="match">Paris -- Marseille</p>
                                 <div class="bet-block">
@@ -80,6 +97,11 @@ include_once "_nav.php"
                                     </label>
                                 </div>
                             </div>
+                        </div>
+                        <div class="final-bet">
+                            <div class="result-bet"></div>
+                        </div>
+                        <div class="ticket" id="ticket2">
                             <div class="match-block">
                                 <p class="match">Paris -- Marseille</p>
                                 <div class="bet-block">
@@ -97,11 +119,6 @@ include_once "_nav.php"
                                     </label>
                                 </div>
                             </div>
-                        </div>
-                        <div class="final-bet">
-                            <div class="result-bet"></div>
-                        </div>
-                        <div class="ticket" id="ticket2">
                             <div class="match-block">
                                 <p class="match">Paris -- Marseille</p>
                                 <div class="bet-block">
@@ -170,26 +187,9 @@ include_once "_nav.php"
                                     </label>
                                 </div>
                             </div>
-                            <div class="match-block">
-                                <p class="match">Paris -- Marseille</p>
-                                <div class="bet-block">
-                                    <input id="match10-1" name="match10" type="radio" value="1" />
-                                    <label for="match10-1">
-                                        <p>1</p>
-                                    </label>
-                                    <input id="match10-N" name="match10" type="radio" value="N" />
-                                    <label for="match10-N">
-                                        <p>Nul</p>
-                                    </label>
-                                    <input id="match10-2" name="match10" type="radio" value="2" />
-                                    <label for="match10-2">
-                                        <p>2</p>
-                                    </label>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                    <button type="button" name="bet-form" class="btn btn-light form-btn">Submit</button>
+                    <button type="button" name="" class="btn btn-light bet-btn">Submit your bet !</button>
                 </form>
             </div>
         </section>

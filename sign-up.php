@@ -13,7 +13,7 @@ if (isset($_GET["error"])) {
     }
     if ($_GET['error'] == "usernameExists") {
         $type = "warning";
-        $message = "Already existing username !";
+        $message = "Already existing user !";
     }
     if ($_GET['error'] == "differentPasswords") {
         $type = "warning";
@@ -55,11 +55,11 @@ if (isset($_GET['success'])) {
             </div>
             <div class="form-group row">
                 <label for="password" class="col-sm-2 col-form-label sign-up-label">Password</label>
-                <input type="text" name="password" class="form-control-plaintext sign-up-input" id="password" value="">
+                <input type="password" name="password" class="form-control-plaintext sign-up-input" id="password" value="">
             </div>
             <div class="form-group row">
                 <label for="password2" class="col-sm-2 col-form-label sign-up-label">Repeat password</label>
-                <input type="text" name="password2" class="form-control-plaintext sign-up-input" id="password2" value="">
+                <input type="password" name="password2" class="form-control-plaintext sign-up-input" id="password2" value="">
             </div>
             <button type="submit" name="submit-sign-up" class="btn btn-outline-info sign-up-btn">Sign Up</button>            
         </form>
