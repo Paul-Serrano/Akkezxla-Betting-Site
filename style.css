@@ -255,28 +255,65 @@ label p {
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr;
-  width: 90%;
-  margin: 2.5% auto;
-  height: 80vh;
+  width: 100%;
+  margin: 0;
+  height: 90vh;
 }
 
 .user {
   display: flex;
   flex-direction: column;
-  width: 30%;
+  width: 95%;
+  height: 90%;
   border: solid;
   justify-self: center;
+  align-self: center;
   justify-content: space-evenly;
 }
 
 .user-bet {
   display: flex;
+  justify-content: center;
+  height: 100%;
 }
 
 .user-ticket {
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.user-result {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 0;
+  width: 100%;
+}
+
+.ticket-surname {
+  text-align: center;
+  margin: 2.5%;
+}
+
+.ticket-hr {
+  border-left: 1px solid;
+  height: 90% !important;
+  margin: 0 1%;
+  align-self: center;
+}
+
+.team {
+  width: 45%;
+  display: flex;
+  justify-content: center;
+}
+
+.team-choice {
+  width: 20%;
+  display: flex;
   justify-content: center;
 }
 
