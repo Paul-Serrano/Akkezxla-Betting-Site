@@ -101,3 +101,7 @@ btn.on("click", (e) => {
     </div>
     `);
 });
+
+// $(window).on("load", function () {
+//   $(".loader-wrapper").fadeOut("slow");
+// });

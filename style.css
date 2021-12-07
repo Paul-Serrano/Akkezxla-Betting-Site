@@ -64,6 +64,7 @@ img {
   border: solid;
   border-top: none;
   padding: 5%;
+  z-index: 1;
 }
 
 .user-param button {
@@ -123,7 +124,7 @@ form {
 .bet-btn {
   color: black;
   width: 25%;
-  margin: 5% auto 0;
+  margin: 2.5% auto 0;
 }
 
 .ticket {
@@ -312,9 +313,143 @@ label p {
 }
 
 .team-choice {
-  width: 20%;
+  width: 15%;
   display: flex;
   justify-content: center;
 }
 
 /* Bet Panorama -- end*/
+
+/* Loader -- start*/
+
+.loader-wrapper {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #242f3f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  display: inline-block;
+  width: 5%;
+  height: 15%;
+  position: relative;
+  border: 4px solid #fff;
+  animation: loader 2s infinite ease;
+}
+
+.loader-inner {
+  vertical-align: top;
+  display: inline-block;
+  width: 100%;
+  background-color: #fff;
+  animation: loader-inner 2s infinite ease-in;
+}
+
+@keyframes loader {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  25% {
+    transform: rotate(180deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  75% {
+    transform: rotate(360deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loader-inner {
+  0% {
+    height: 0%;
+  }
+
+  25% {
+    height: 0%;
+  }
+
+  50% {
+    height: 100%;
+  }
+
+  75% {
+    height: 100%;
+  }
+
+  100% {
+    height: 0%;
+  }
+}
+
+/* Loader -- end*/
+
+/* Ranking page -- Start*/
+
+.main-ranking {
+  display: flex;
+  width: 90%;
+  margin: auto;
+  height: 90vh;
+  justify-content: space-evenly;
+  flex-direction: row;
+}
+
+.ranking-wrapper,
+.result-wrapper {
+  width: 45%;
+  margin: auto;
+}
+
+.akkezxla-result-wrapper {
+  width: 60%;
+  margin: auto;
+}
+
+.akkezxla-ranking-wrapper {
+  width: 100%;
+  margin: auto;
+}
+
+.ligue1-ranking {
+  width: 100%;
+  border: solid;
+  text-align: center;
+}
+
+.akkezxla {
+  display: flex;
+  width: 45%;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 60%;
+}
+
+.akkezxla-result,
+.akkezxla-ranking {
+  width: 60%;
+  margin: auto;
+  text-align: center;
+  border: solid;
+}
+
+.akkezxla-result th,
+.akkezxla-ranking th {
+  border-bottom: solid;
+}
+
+/* Ranking page -- End*/

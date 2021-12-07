@@ -13,6 +13,7 @@ if (empty($_SESSION)) {
     $user = null;
 } else {
     $user = $_SESSION['user'];
+    $userSurname = $_SESSION['surname'];
 }
 
 ?>

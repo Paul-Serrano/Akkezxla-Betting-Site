@@ -2,7 +2,7 @@
 
 include_once "_head.php";
 include_once "_nav.php";
-require "connect.php";
+require_once "connect.php";
 
 $alert = false;
 

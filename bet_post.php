@@ -4,6 +4,7 @@ include_once "_head.php";
 include_once "_nav.php";
 require "config.php";
 require "connect.php";
+require "connectExcel.php";
 
 $result = [1, 2, 'N', 1, 'N', 2, 1, 1, 2, 'N'];
 $points = 0;
@@ -29,9 +30,11 @@ if(isset($_POST['bet-form'])){
     $match8 = $_POST['match8'];
     $match9 = $_POST['match9'];
     
-    $insertBet = 'INSERT INTO bet (match1,match2,match3,match4,match5,match6,match7,match8,match9,match10,surname)
-    VALUES(:match0,:match1,:match2,:match3,:match4,:match5,:match6,:match7,:match8,:match9,:surname)';
+    $insertBet = 'INSERT INTO bet (gameday, surname, match1,match2,match3,match4,match5,match6,match7,match8,match9,match10)
+    VALUES(:gameday,:surname,:match0,:match1,:match2,:match3,:match4,:match5,:match6,:match7,:match8,:match9)';
     $reqInsertBet = $db->prepare($insertBet);
+    $reqInsertBet->bindValue(':surname', $betSurname, PDO::PARAM_STR);
+    $reqInsertBet->bindValue(':gameday', $gameDay, PDO::PARAM_STR);
     $reqInsertBet->bindValue(':match0', $match0, PDO::PARAM_STR);
     $reqInsertBet->bindValue(':match1', $match1, PDO::PARAM_STR);
     $reqInsertBet->bindValue(':match2', $match2, PDO::PARAM_STR);
@@ -42,7 +45,6 @@ if(isset($_POST['bet-form'])){
     $reqInsertBet->bindValue(':match7', $match7, PDO::PARAM_STR);
     $reqInsertBet->bindValue(':match8', $match8, PDO::PARAM_STR);
     $reqInsertBet->bindValue(':match9', $match9, PDO::PARAM_STR);
-    $reqInsertBet->bindValue(':surname', $betSurname, PDO::PARAM_STR);
     $bet = $reqInsertBet->execute();
 
     if($bet) {

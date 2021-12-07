@@ -3,6 +3,7 @@
 session_start();
 
 require "config.php";
+require_once "checkExistingTicket.php";
 
 ?>
 
@@ -21,18 +22,18 @@ require "config.php";
     }
     else {
     ?>
-       <div class="nav-link"><a href="sign-up.php">Sign Up/Sign In</a></div>
+       <div class="nav-link"><a href="sign-in.php">Sign Up/Sign In</a></div>
     <?php }
     ?>
     <?php
-    if(false) {
+    if(isset($userSurname) && in_array($userSurname, $existingUserSurname)) {
     ?>
         <div class="nav-link"><a href="bet-panorama.php">Akkezxla Bet</a></div>
     <?php
     }
     else {
     ?>
-        <div class="nav-link"><a href="index.php">Akkezxla Bet</a></div>
+        <div class="nav-link"><a href="bet-list.php">Akkezxla Bet</a></div>
     <?php    
     }
     ?>

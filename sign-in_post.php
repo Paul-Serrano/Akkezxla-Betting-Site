@@ -1,10 +1,11 @@
 <?php
 
-unset($_SESSION["user"]);
+// unset($_SESSION["user"]);
 session_start();
 
 require "connect.php";
 require "config.php";
+require_once "checkExistingTicket.php";
 
 
 if (empty($_POST['username']) || empty($_POST['pass'])) {
@@ -17,9 +18,6 @@ if (empty($_POST['username']) || empty($_POST['pass'])) {
 }
 
 try {
-    //? Requête préparée de récupération de l'utilisateur
-    //* Dans le cas d'un champ unique (ici username) qui serait utilisable avec l'username ou l'email on écrirait la requête de cette façon.
-    // $verifUsername = "SELECT * FROM user WHERE username = :username OR email = :username";
     $verifUsername = 'SELECT * FROM user WHERE username = :username LIMIT 1';
     $reqVerifUsername = $db->prepare($verifUsername);
     $reqVerifUsername->bindValue(':username', $username, PDO::PARAM_STR);
@@ -40,7 +38,13 @@ if ($user) {
         $_SESSION['id'] = $user['id'];
         $_SESSION['pass'] = $user['password'];
         $_SESSION['surname'] = $user['surname'];
-        header('Location:index.php');
+        if(!in_array($_SESSION['surname'], $existingUserSurname)){
+            header('Location:bet-list.php');
+        }
+        else {
+            header('Location:bet-panorama.php');
+        }
+        
     }
 }
 else {
