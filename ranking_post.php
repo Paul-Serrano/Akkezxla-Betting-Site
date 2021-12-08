@@ -63,21 +63,6 @@ for($j = 0; $j < count($userBet) ; $j++) {
     $userPoints = 0;
 }
 
-if(isset($_POST['next-gameday'])) {
-    
-    for($i = 0; $i < count($userBet); $i++) {
-        $sendPoints = "INSERT INTO score (gameday, surname, points) VALUES (:gameday, :surname, :points)";
-        $reqSendPoints = $db->prepare($sendPoints);
-        $reqSendPoints->bindValue(':gameday', $points[$i][0], PDO::PARAM_STR);
-        $reqSendPoints->bindValue(':surname', $points[$i][1], PDO::PARAM_STR);
-        $reqSendPoints->bindValue(':points', $points[$i][2], PDO::PARAM_STR);
-        $submitSendPoints = $reqSendPoints->execute();
-    }
-    
-
-
-    header('Location:ranking.php');
-}
 try {
     $getSurname = "SELECT surname FROM bet";
     $reqGetSurname = $db->prepare($getSurname);
@@ -126,21 +111,85 @@ for($i = 0; $i < $playersNumber; $i++){
     $userPoint = 0;
 }
 
-$maxPoints = 0;
-$userPointsOrder = [];
+try {
+    $checkTotalScore = "SELECT * FROM totalscore";
+    $reqCheckTotalScore = $db->prepare($checkTotalScore);
+    $submitCheckTotalScore = $reqCheckTotalScore->execute();
+    $checkTotalScore = $reqCheckTotalScore->fetchAll();
+}
 
+catch (PDOException $e) {
+    $db = null;
+    echo 'Erreur : '.$e->getMessage();
+}
 
-// for($j = count($userPoints) - 1; $j > -1; $j--){
-//     for($i = 0; $i < count($userPoints); $i++){
-//         if($userPoints[$i][1] >= $maxPoints) {
-//             $maxPoints = $userPoints[$i][1];
-//             $userMaxPoints = $userPoints[$i][0];
-//         }
-//     }
-//     $userPoints[$j] = [$userMaxPoints, $maxPoints];
-    // array_push($userPointsOrder, $maxPoints);
-    // unset($userPoints[array_search($maxPoints, $userPoints)]);
-// }
+if(isset($_POST['next-gameday'])) {
+    
+    for($i = 0; $i < count($userBet); $i++) {
+        try {
+            $sendPoints = "INSERT INTO score (gameday, surname, points) VALUES (:gameday, :surname, :points)";
+            $reqSendPoints = $db->prepare($sendPoints);
+            $reqSendPoints->bindValue(':gameday', $points[$i][0], PDO::PARAM_STR);
+            $reqSendPoints->bindValue(':surname', $points[$i][1], PDO::PARAM_STR);
+            $reqSendPoints->bindValue(':points', $points[$i][2], PDO::PARAM_STR);
+            $submitSendPoints = $reqSendPoints->execute();
+        }
+
+        catch (PDOException $e) {
+            $db = null;
+            echo 'Erreur : '.$e->getMessage();
+        }
+        
+    }
+
+    if(!empty($checkTotalScore)) {
+        for($i = 0; $i < count($userPoints); $i++) {
+            try {
+                $sendTotalPoints = "UPDATE totalscore SET surname=:surname, totalScore=:totalScore";
+                $reqSendTotalPoints = $db->prepare($sendTotalPoints);
+                $reqSendTotalPoints->bindValue(':surname', $userPoints[$i][0], PDO::PARAM_STR);
+                $reqSendTotalPoints->bindValue(':totalScore', $userPoints[$i][1], PDO::PARAM_STR);
+                $submitSendTotalPoints = $reqSendTotalPoints->execute();
+            }
+            
+            catch (PDOException $e) {
+                $db = null;
+                echo 'Erreur : '.$e->getMessage();
+            }
+        }
+    }
+
+    else {
+        for($i = 0; $i < count($userPoints); $i++) {
+            try {
+                $sendTotalPoints = "INSERT INTO totalscore (surname, totalScore) VALUES (:surname, :totalScore)";
+                $reqSendTotalPoints = $db->prepare($sendTotalPoints);
+                $reqSendTotalPoints->bindValue(':surname', $userPoints[$i][0], PDO::PARAM_STR);
+                $reqSendTotalPoints->bindValue(':totalScore', $userPoints[$i][1], PDO::PARAM_STR);
+                $submitSendTotalPoints = $reqSendTotalPoints->execute();
+            }
+    
+            catch (PDOException $e) {
+                $db = null;
+                echo 'Erreur : '.$e->getMessage();
+            }
+        }
+    }
+
+    try {
+        $getTotalScore = "SELECT * FROM totalscore ORDER BY totalScore";
+        $reqGetTotalScore = $db->prepare($getTotalScore);
+        $submitGetTotalScore = $reqGetTotalScore->execute();
+        $totalScore = $reqGetTotalScore->fetchAll();
+    }
+    
+    catch (PDOException $e) {
+        $db = null;
+        echo 'Erreur : '.$e->getMessage();
+    }
+    
+    header('Location:ranking.php');
+}
 
 
 

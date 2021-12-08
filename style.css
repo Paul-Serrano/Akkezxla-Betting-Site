@@ -453,3 +453,29 @@ label p {
 }
 
 /* Ranking page -- End*/
+
+@media (max-width: 850px) {
+  .sign-in-form {
+    width: 75%;
+  }
+
+  .sign-up-form {
+    width: 90%;
+  }
+
+  .sign-up-main {
+    height: 150vh;
+  }
+
+  .match-block {
+    display: flex;
+  }
+}
+
+/* wide phone -- start */
+
+/* wide phone -- start */
+
+/* potrait phone -- start */
+
+/* portrait phone -- start */
