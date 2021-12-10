@@ -5,11 +5,7 @@ include_once "_nav.php";
 require_once "connectExcel.php";
 require_once "ranking_post.php";
 
-// ?><pre><?php
-// var_dump($totalScore);
-// var_dump($userPoints);
-// var_dump($checkTotalScore);
-// ?></pre><?php?>
+?>
 
 <body>
     <main class="main-ranking">
@@ -47,7 +43,7 @@ require_once "ranking_post.php";
             </form>
             <div class="result-wrapper akkezxla-result-wrapper">
                 <?php
-                if(isset($points)) {
+                if(!empty($points)) {
                 ?>
                 <table class="result akkezxla-result">
                     <tr>
@@ -71,19 +67,26 @@ require_once "ranking_post.php";
             </div>
             <div class="ranking-wrapper akkezxla-ranking-wrapper">
             <?php
-            if(isset($userPoints)){
+            if(!empty($userRanking[0])){
             ?>
                 <table class="akkezxla-ranking">
                     <tr>
+                        <th>Rk</th>
                         <th>General Ranking</th>
+                        <th>n°of bet</th>
                         <th>Points</th>
+                        <th>Pts/bet</th>
+
                     </tr>
                     <?php
-                    for($i = 0; $i < $playersNumber; $i++) {
+                    for($i = 0; $i < count($userRanking); $i++) {
                     ?>
                     <tr>
-                        <td><?php echo $userPoints[$i][0];?></td>
-                        <td><?php echo $userPoints[$i][1];?> Points</td>
+                        <td><?php echo $i + 1;?></td>
+                        <td><?php echo $userRanking[$i][0];?></td>
+                        <td><?php echo $userRanking[$i][2];?></td>
+                        <td><?php echo $userRanking[$i][1];?></td>
+                        <td><?php echo round($userRanking[$i][3], 2);?></td>
                     </tr>
                     <?php
                     }

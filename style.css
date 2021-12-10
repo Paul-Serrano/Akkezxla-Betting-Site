@@ -454,6 +454,8 @@ label p {
 
 /* Ranking page -- End*/
 
+/* wide phone -- start */
+
 @media (max-width: 850px) {
   .sign-in-form {
     width: 75%;
@@ -471,8 +473,6 @@ label p {
     display: flex;
   }
 }
-
-/* wide phone -- start */
 
 /* wide phone -- start */
 

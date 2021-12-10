@@ -50,17 +50,17 @@ for ($i = ($gameDay - 1)*10 - 3; $i < ($gameDay - 1)*10 + 7; $i++) {
     }
 }
 
-$userPoints = 0;
-    $points = [];
+$gamedayPoints = 0;
+$points = [];
 
 for($j = 0; $j < count($userBet) ; $j++) {
     for ($i = 1; $i < 11; $i++) {
         if($resultGameDay[$i - 1] == $userBet[$j]["match".$i.""]) {
-            $userPoints++;
+            $gamedayPoints++;
         }
     }
-    array_push($points, [$userBet[$j]['gameday'], $userBet[$j]['surname'], $userPoints]);
-    $userPoints = 0;
+    array_push($points, [$userBet[$j]['gameday'], $userBet[$j]['surname'], $gamedayPoints]);
+    $gamedayPoints = 0;
 }
 
 try {
@@ -87,33 +87,21 @@ catch (PDOException $e) {
     echo 'Erreur : '.$e->getMessage();
 }
 
-$players = [];
-
-for($i = 0; $i < count($userBetSurname); $i++) {
-    if(!in_array($userBetSurname[$i]['surname'], $players)){
-        array_push($players, $userBetSurname[$i]['surname']);
-    }
-}
-
-$playersNumber = count($players);
-
-$userPoint = 0;
-$userPoints = [];
-
-for($i = 0; $i < $playersNumber; $i++){
-    for($j = 0; $j < count($userBetScore); $j++) {
-        if($userBetScore[$j]['surname'] == $players[$i]){
-            $userPoint = $userPoint + $userBetScore[$j]['points'];
-        }
-    }
-    $userTotalScore = [$players[$i], $userPoint];
-    array_push($userPoints, $userTotalScore);
-    $userPoint = 0;
-}
-
 try {
     $checkTotalScore = "SELECT * FROM totalscore";
     $reqCheckTotalScore = $db->prepare($checkTotalScore);
+    $submitCheckTotalScore = $reqCheckTotalScore->execute();
+    $checkTotalScore = $reqCheckTotalScore->fetchAll();
+}
+
+catch (PDOException $e) {
+    $db = null;
+    echo 'Erreur : '.$e->getMessage();
+}
+
+try {
+    $sqlCheckTotalScore = "SELECT * FROM totalscore";
+    $reqCheckTotalScore = $db->prepare($sqlCheckTotalScore);
     $submitCheckTotalScore = $reqCheckTotalScore->execute();
     $checkTotalScore = $reqCheckTotalScore->fetchAll();
 }
@@ -138,58 +126,106 @@ if(isset($_POST['next-gameday'])) {
         catch (PDOException $e) {
             $db = null;
             echo 'Erreur : '.$e->getMessage();
-        }
-        
+        } 
     }
 
-    if(!empty($checkTotalScore)) {
-        for($i = 0; $i < count($userPoints); $i++) {
-            try {
-                $sendTotalPoints = "UPDATE totalscore SET surname=:surname, totalScore=:totalScore";
-                $reqSendTotalPoints = $db->prepare($sendTotalPoints);
-                $reqSendTotalPoints->bindValue(':surname', $userPoints[$i][0], PDO::PARAM_STR);
-                $reqSendTotalPoints->bindValue(':totalScore', $userPoints[$i][1], PDO::PARAM_STR);
-                $submitSendTotalPoints = $reqSendTotalPoints->execute();
-            }
-            
-            catch (PDOException $e) {
-                $db = null;
-                echo 'Erreur : '.$e->getMessage();
-            }
-        }
-    }
+    // for($i = 0; $i < count($userPoints); $i++) {
+    //     try {
+    //         $sendTotalPoints = "UPDATE totalscore SET surname=:surname, totalScore=:totalScore";
+    //         $reqSendTotalPoints = $db->prepare($sendTotalPoints);
+    //         $reqSendTotalPoints->bindValue(':surname', $userPoints[$i][0], PDO::PARAM_STR);
+    //         $reqSendTotalPoints->bindValue(':totalScore', $userPoints[$i][1], PDO::PARAM_STR);
+    //         $submitSendTotalPoints = $reqSendTotalPoints->execute();
+    //     }
 
-    else {
-        for($i = 0; $i < count($userPoints); $i++) {
-            try {
-                $sendTotalPoints = "INSERT INTO totalscore (surname, totalScore) VALUES (:surname, :totalScore)";
-                $reqSendTotalPoints = $db->prepare($sendTotalPoints);
-                $reqSendTotalPoints->bindValue(':surname', $userPoints[$i][0], PDO::PARAM_STR);
-                $reqSendTotalPoints->bindValue(':totalScore', $userPoints[$i][1], PDO::PARAM_STR);
-                $submitSendTotalPoints = $reqSendTotalPoints->execute();
-            }
-    
-            catch (PDOException $e) {
-                $db = null;
-                echo 'Erreur : '.$e->getMessage();
-            }
-        }
-    }
+    //     catch (PDOException $e) {
+    //         $db = null;
+    //         echo 'Erreur : '.$e->getMessage();
+    //     }
+    // }
 
-    try {
-        $getTotalScore = "SELECT * FROM totalscore ORDER BY totalScore";
-        $reqGetTotalScore = $db->prepare($getTotalScore);
-        $submitGetTotalScore = $reqGetTotalScore->execute();
-        $totalScore = $reqGetTotalScore->fetchAll();
-    }
-    
-    catch (PDOException $e) {
-        $db = null;
-        echo 'Erreur : '.$e->getMessage();
-    }
-    
     header('Location:ranking.php');
 }
+
+try {
+    $getTotalScore = "SELECT * FROM totalscore ORDER BY totalScore DESC";
+    $reqGetTotalScore = $db->prepare($getTotalScore);
+    $submitGetTotalScore = $reqGetTotalScore->execute();
+    $totalScore = $reqGetTotalScore->fetchAll();
+}
+
+
+
+catch (PDOException $e) {
+    $db = null;
+    echo 'Erreur : '.$e->getMessage();
+}
+
+$players = [];
+
+for($i = 0; $i < count($userBetSurname); $i++) {
+    if(!in_array($userBetSurname[$i]['surname'], $players)){
+        array_push($players, $userBetSurname[$i]['surname']);
+    }
+}
+
+$playersNumber = count($players);
+$betNumber = 0;
+
+for($j = 0; $j < $playersNumber; $j++) {
+    for($i = 0; $i < count($userBetScore); $i++) {
+
+    }
+
+}
+
+$userPoint = 0;
+$userPoints = [];
+$arrayTest = [];
+
+for($i = 0; $i < $playersNumber; $i++){
+    for($j = 0; $j < count($userBetScore); $j++) {
+        if($players[$i] == $userBetScore[$j]['surname']){
+            $userPoint = $userPoint + $userBetScore[$j]['points'];
+        }
+        if($userBetScore[$j]['surname'] == $players[$i]){
+            $betNumber++;  
+        }
+    }
+    array_push($userPoints, [$players[$i], $userPoint, $betNumber]);
+    $userPoint = 0;
+    $allBetNumber[$i] = $betNumber;
+    $betNumber = 0;
+}
+
+
+$userRatio = [];
+for($j = 0; $j < $playersNumber; $j++) {
+    if( $userPoints[$j][2] > 0) {
+        $userRatio[$j] = $userPoints[$j][1] / $userPoints[$j][2];
+    }
+    else {
+        $userRatio[$j] = 0;
+    }
+    array_push($userPoints[$j], $userRatio[$j]);
+}
+
+$userRanking = [];
+$maxUserPoints = 0;
+
+for($j = 0; $j < $playersNumber; $j++) {
+    for($i = 0; $i < count($userPoints); $i++) {
+        if($userPoints[$i][1] >= $maxUserPoints) {
+            $maxUserPoints = $userPoints[$i][1];
+            $userRanking[$j] = $userPoints[$i];
+            $startSplice = $i;
+        }
+    }
+    array_splice($userPoints, $startSplice, 1);
+    $maxUserPoints = 0;
+}
+
+
 
 
 
