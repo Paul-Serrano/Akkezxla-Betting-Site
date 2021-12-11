@@ -2,7 +2,7 @@
 
 include_once "_head.php";
 include_once "_nav.php";
-// include_once "_loader.php";
+include_once "_loader.php";
 require_once "config.php";
 require_once "connect.php";
 require_once "connectExcel.php";
@@ -66,6 +66,7 @@ $bet = $reqViewBet->fetchAll();
         </div>
 
     </main>
+    <script src="script.js"></script>
 </body>
 
 
