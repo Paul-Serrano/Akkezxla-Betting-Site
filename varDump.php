@@ -1,0 +1,7 @@
+<?php 
+
+?><pre><?php
+var_dump();
+?></pre><?php
+
+?>

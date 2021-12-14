@@ -19,7 +19,7 @@ require "connectExcel.php";
                         for($i = 0; $i < 5; $i++) {
                         ?>   
                             <div class="match-block">
-                                <p class="match"><?php echo $ticket1[-3 + $gameDay*10 + $i][0]; ?> -- <?php echo $ticket1[-3 + $gameDay*10 + $i][1]; ?></p>
+                                <p class="match"><?php echo $ticket1[$i][0]; ?> -- <?php echo $ticket1[$i][1]; ?></p>
                                 <div class="bet-block">
                                     <input id="match<?php echo $i?>-1" name="match<?php echo $i?>" type="radio" value="1" />
                                     <label for="match<?php echo $i?>-1">
@@ -47,7 +47,7 @@ require "connectExcel.php";
                         for($i = 0; $i < 5; $i++) {
                         ?>   
                             <div class="match-block">
-                                <p class="match"><?php echo $ticket2[2 + $gameDay*10 + $i][0]; ?> -- <?php echo $ticket2[2 + $gameDay*10 + $i][1]; ?></p>
+                                <p class="match"><?php echo $ticket2[$i][0]; ?> -- <?php echo $ticket2[$i][1]; ?></p>
                                 <div class="bet-block">
                                     <input id="match<?php echo $i + 5 ?>-1" name="match<?php echo $i + 5 ?>" type="radio" value="1" />
                                     <label for="match<?php echo $i + 5 ?>-1">

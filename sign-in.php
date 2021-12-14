@@ -40,4 +40,5 @@ if (isset($_GET["error"])) {
         </form>
         <p>Don't have an account ? go <a href="sign-up.php">Sign up !</a></p>
     </main>
+    <script src="script.js"></script>
 </body>

@@ -64,4 +64,5 @@ if (isset($_GET['success'])) {
         </form>
         <p>Already have an account ? Go <a href="sign-in.php">Sign in !</a></p>
     </main>
+    <script src="script.js"></script>
 </body>

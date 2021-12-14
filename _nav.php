@@ -2,7 +2,8 @@
 
 session_start();
 
-require "config.php";
+require_once "config.php";
+require_once "_loader.php";
 require_once "checkExistingTicket.php";
 
 ?>

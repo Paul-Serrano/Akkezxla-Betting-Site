@@ -3,23 +3,36 @@
 require_once "connect.php";
 require_once "connectExcel.php";
 
-$teamRank = [];
-$teamPoints = [];
-$teamGoalDiff = [];
-
-for ($i = 7; $i < 27; $i++) {
-    array_push($teamRank, $rankingSheet->getCell('AC'.$i.'')->getCalculatedValue());
+try {
+    $getResult = "SELECT * FROM result";
+    $reqGetResult = $db->prepare($getResult);
+    $SubmitGetResult = $reqGetResult->execute();
+    $result = $reqGetResult->fetchAll();
 }
 
-for ($i = 7; $i < 27; $i++) {
-    array_push($teamPoints, $rankingSheet->getCell('AD'.$i.'')->getCalculatedValue());
+catch (PDOException $e) {
+    $db = null;
+    echo 'Erreur : '.$e->getMessage();
 }
 
-for ($i = 7; $i < 27; $i++) {
-    array_push($teamGoalDiff, $rankingSheet->getCell('AK'.$i.'')->getCalculatedValue());
+for($i = 1; $i < 6; $i++) {
+    $result1['result'][$i] = $result[0]['match'.$i.''];
 }
 
-$resultDay = $gameDay - 1;
+for($i = 1; $i < 6; $i++) {
+    $j = $i + 5;
+    $result2['result'][$i] = $result[0]['match'.$j.''];
+}
+
+$resultDay = 1;
+
+for($i = 0; $i < count($result); $i++) {
+    if($result[$i]['gameday'] > $resultDay) {
+        $resultDay = $result[$i]['gameday'];
+        $gameDay = $resultDay + 1;
+    }
+}
+
 
 try {
     $viewUserBet = "SELECT gameday,surname,match1,match2,match3,match4,match5,match6,match7,match8,match9,match10 From bet Where gameday=".$resultDay."";
@@ -33,35 +46,94 @@ catch (PDOException $e) {
     echo 'Erreur : '.$e->getMessage();
 }
 
-
-$resultGameDay = [];
-
-for ($i = ($gameDay - 1)*10 - 3; $i < ($gameDay - 1)*10 + 7; $i++) {
-    $scoreHome = $resultSheet->getCell('G'.$i.'')->getValue();
-    $scoreAway = $resultSheet->getCell('H'.$i.'')->getValue();
-    if($scoreHome < $scoreAway){
-        array_push($resultGameDay, "2");
-    }
-    else if($scoreHome > $scoreAway){
-        array_push($resultGameDay, "1");
-    }
-    else {
-        array_push($resultGameDay, "N");
-    }
-}
-
-$gamedayPoints = 0;
+$ticket1Points = 0;
+$ticket2Points = 0;
 $points = [];
 
 for($j = 0; $j < count($userBet) ; $j++) {
-    for ($i = 1; $i < 11; $i++) {
-        if($resultGameDay[$i - 1] == $userBet[$j]["match".$i.""]) {
-            $gamedayPoints++;
+    for ($i = 1; $i < 6; $i++) {
+        if($result1['result'][$i] == $userBet[$j]["match".$i.""]) {
+            $ticket1Points++;
         }
     }
-    array_push($points, [$userBet[$j]['gameday'], $userBet[$j]['surname'], $gamedayPoints]);
+    for ($i = 1; $i < 6; $i++) {
+        $k = $i + 5;
+        if($result2['result'][$i] == $userBet[$j]["match".$k.""]) {
+            $ticket2Points++;
+        }
+    }
+    $gamedayPoints = $ticket1Points + $ticket2Points;
+    array_push($points, [$userBet[$j]['gameday'], $userBet[$j]['surname'], $gamedayPoints, $ticket1Points, $ticket2Points]);
     $gamedayPoints = 0;
+    $ticket1Points = 0;
+    $ticket2Points = 0;
 }
+
+if(isset($_POST['update-score'])) {
+    
+    for($i = 0; $i < count($userBet); $i++) {
+        try {
+            $sendPoints = "INSERT INTO score (gameday, surname, points, ticket1, ticket2) VALUES (:gameday, :surname, :points, :ticket1, :ticket2)";
+            $reqSendPoints = $db->prepare($sendPoints);
+            $reqSendPoints->bindValue(':gameday', $points[$i][0], PDO::PARAM_STR);
+            $reqSendPoints->bindValue(':surname', $points[$i][1], PDO::PARAM_STR);
+            $reqSendPoints->bindValue(':points', $points[$i][2], PDO::PARAM_STR);
+            $reqSendPoints->bindValue(':ticket1', $points[$i][3], PDO::PARAM_STR);
+            $reqSendPoints->bindValue(':ticket2', $points[$i][4], PDO::PARAM_STR);
+            $submitSendPoints = $reqSendPoints->execute();
+        }
+
+        catch (PDOException $e) {
+            $db = null;
+            echo 'Erreur : '.$e->getMessage();
+        } 
+    }
+
+    // for($i = 0; $i < count($userPoints); $i++) {
+    //     try {
+    //         $sendTotalPoints = "UPDATE totalscore SET surname=:surname, totalScore=:totalScore";
+    //         $reqSendTotalPoints = $db->prepare($sendTotalPoints);
+    //         $reqSendTotalPoints->bindValue(':surname', $userPoints[$i][0], PDO::PARAM_STR);
+    //         $reqSendTotalPoints->bindValue(':totalScore', $userPoints[$i][1], PDO::PARAM_STR);
+    //         $submitSendTotalPoints = $reqSendTotalPoints->execute();
+    //     }
+
+    //     catch (PDOException $e) {
+    //         $db = null;
+    //         echo 'Erreur : '.$e->getMessage();
+    //     }
+    // }
+
+    header('Location:ranking.php');
+}
+
+if(isset($_POST['update-result'])) {
+    try {
+        $insertResult = "INSERT INTO result (gameday, match1, match2, match3, match4, match5, match6, match7, match8, match9, match10)
+        VALUES (:gameday, :match1, :match2, :match3, :match4, :match5, :match6, :match7, :match8, :match9, :match10)";
+        $reqInsertResult = $db->prepare($insertResult);
+        $reqInsertResult->bindValue(':gameday', $gameDay, PDO::PARAM_STR);
+        $reqInsertResult->bindValue(':match1', $_POST['match0'], PDO::PARAM_STR);
+        $reqInsertResult->bindValue(':match2', $_POST['match1'], PDO::PARAM_STR);
+        $reqInsertResult->bindValue(':match3', $_POST['match2'], PDO::PARAM_STR);
+        $reqInsertResult->bindValue(':match4', $_POST['match3'], PDO::PARAM_STR);
+        $reqInsertResult->bindValue(':match5', $_POST['match4'], PDO::PARAM_STR);
+        $reqInsertResult->bindValue(':match6', $_POST['match5'], PDO::PARAM_STR);
+        $reqInsertResult->bindValue(':match7', $_POST['match6'], PDO::PARAM_STR);
+        $reqInsertResult->bindValue(':match8', $_POST['match7'], PDO::PARAM_STR);
+        $reqInsertResult->bindValue(':match9', $_POST['match8'], PDO::PARAM_STR);
+        $reqInsertResult->bindValue(':match10', $_POST['match9'], PDO::PARAM_STR);
+        $submitSendResult = $reqInsertResult->execute();
+    }
+
+    catch (PDOException $e) {
+        $db = null;
+        echo 'Erreur : '.$e->getMessage();
+    } 
+
+    header('Location:ranking.php');
+}
+
 
 try {
     $getSurname = "SELECT surname FROM bet";
@@ -153,8 +225,6 @@ try {
     $submitGetTotalScore = $reqGetTotalScore->execute();
     $totalScore = $reqGetTotalScore->fetchAll();
 }
-
-
 
 catch (PDOException $e) {
     $db = null;

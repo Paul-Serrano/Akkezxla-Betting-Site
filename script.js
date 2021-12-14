@@ -127,3 +127,19 @@ $("#user").click(function () {
     userParam.css("visibility", "visible");
   }
 });
+
+const upOpenerBtn = $(".update-opener-btn");
+const updateForm = $(".update-form-container");
+const upCloserBtn = $(".close-update-form");
+
+upOpenerBtn.click(function () {
+  updateForm.css("display", "flex");
+});
+
+upCloserBtn.click(function () {
+  updateForm.css("display", "none");
+});
+
+console.log(userParam);
+console.log(navLink);
+console.log(navPhone);

@@ -65,5 +65,6 @@ if (isset($_GET['success'])) {
             <button type="submit" name="submit-change-info" class="btn btn-outline-info sign-up-btn">Change Info</button>            
         </form>
     </main>
+    <script src="script.js"></script>
 </body>
 

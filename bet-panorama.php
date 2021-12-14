@@ -2,7 +2,6 @@
 
 include_once "_head.php";
 include_once "_nav.php";
-include_once "_loader.php";
 require_once "config.php";
 require_once "connect.php";
 require_once "connectExcel.php";
@@ -35,9 +34,9 @@ $bet = $reqViewBet->fetchAll();
             ?>
                 <p class="user-result"><?php
                 $resultTicket1 = $bet[$i]['match'.$j.''];
-                    ?><span class="team"><?php echo $ticket1[-4 + $gameDay*10 + $j][0];?></span>
+                    ?><span class="team"><?php echo $ticket1[$j - 1][0];?></span>
                     <span class="team-choice"><?php echo "| ".$resultTicket1." |";?></span>
-                    <span class="team"><?php echo $ticket1[-4 + $gameDay*10 + $j][1];?></span>
+                    <span class="team"><?php echo $ticket1[$j - 1][1];?></span>
                 </p>
             <?php
             }
@@ -50,9 +49,9 @@ $bet = $reqViewBet->fetchAll();
             ?>
                 <p class="user-result"><?php
                 $resultTicket2 = $bet[$i]['match'.$j.''];
-                    ?><span class="team"><?php echo $ticket2[-4 + $gameDay*10 + $j][0];?></span> 
-                    <span class="team-choice"><?php echo " | ".$resultTicket2." | ";?></span>
-                    <span class="team"><?php echo $ticket2[-4 + $gameDay*10 + $j][1];?></span>
+                    ?><span class="team"><?php echo $ticket2[$j - 6][0];?></span> 
+                    <span class="team-choice"><?php echo "| ".$resultTicket2." |";?></span>
+                    <span class="team"><?php echo $ticket2[$j - 6][1];?></span>
                 </p><?php
             }
 ?>
