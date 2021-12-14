@@ -15,6 +15,16 @@ const form = $(".form-container");
 
 btn.on("click", (e) => {
   e.preventDefault();
+
+  // for (j = 0; j < 10; j++) {
+  //   for (i = 0; i < match0.length; i++) {
+  //     if (match0[i].checked) {
+  //       result0 = match0[i].value;
+  //       break;
+  //     }
+  //   }
+  // }
+
   for (i = 0; i < match0.length; i++) {
     if (match0[i].checked) {
       result0 = match0[i].value;
@@ -104,4 +114,16 @@ btn.on("click", (e) => {
 
 $(window).on("load", function () {
   $(".loader-wrapper").fadeOut("slow");
+});
+
+const userParam = $(".user-param");
+const navLink = $(".nav-link");
+const navPhone = $(".nav-phone");
+
+$("#user").click(function () {
+  if (userParam.css("visibility", "visible")) {
+    userParam.css("visibility", "hidden");
+  } else {
+    userParam.css("visibility", "visible");
+  }
 });

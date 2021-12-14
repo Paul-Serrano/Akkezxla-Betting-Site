@@ -12,7 +12,6 @@ $ligue1File = \PhpOffice\PhpSpreadsheet\IOFactory::load($inputFileName);
 $rankingSheet = $ligue1File->getSheet(3);
 $resultSheet = $ligue1File->getSheet(1);
 
-
 for($i = 7; $i < 387; $i = $i+10) {
     $scoreColumn[$i] = $resultSheet->getCell('K'.$i.'')->getCalculatedValue();
     if ($scoreColumn[$i] == "Non joué") {
