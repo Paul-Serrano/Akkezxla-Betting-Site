@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : sam. 11 déc. 2021 à 19:10
+-- Généré le : mar. 14 déc. 2021 à 22:36
 -- Version du serveur : 10.4.22-MariaDB
 -- Version de PHP : 8.0.13
 
@@ -60,6 +60,34 @@ INSERT INTO `bet` (`id`, `gameday`, `surname`, `match1`, `match2`, `match3`, `ma
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `result`
+--
+
+CREATE TABLE `result` (
+  `id` int(11) NOT NULL,
+  `gameday` int(5) NOT NULL,
+  `match1` varchar(5) NOT NULL,
+  `match2` varchar(5) NOT NULL,
+  `match3` varchar(5) NOT NULL,
+  `match4` varchar(5) NOT NULL,
+  `match5` varchar(5) NOT NULL,
+  `match6` varchar(5) NOT NULL,
+  `match7` varchar(5) NOT NULL,
+  `match8` varchar(5) NOT NULL,
+  `match9` varchar(5) NOT NULL,
+  `match10` varchar(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `result`
+--
+
+INSERT INTO `result` (`id`, `gameday`, `match1`, `match2`, `match3`, `match4`, `match5`, `match6`, `match7`, `match8`, `match9`, `match10`) VALUES
+(5, 18, '1', '1', '1', '1', '1', '1', '1', '1', '1', '1');
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `score`
 --
 
@@ -67,16 +95,10 @@ CREATE TABLE `score` (
   `id` int(11) NOT NULL,
   `gameday` int(5) NOT NULL,
   `surname` varchar(50) NOT NULL,
-  `points` int(5) NOT NULL
+  `points` int(5) NOT NULL,
+  `ticket1` int(5) DEFAULT NULL,
+  `ticket2` int(5) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Déchargement des données de la table `score`
---
-
-INSERT INTO `score` (`id`, `gameday`, `surname`, `points`) VALUES
-(276, 18, 'Paul', 4),
-(277, 18, 'Dorian', 5);
 
 -- --------------------------------------------------------
 
@@ -129,6 +151,12 @@ ALTER TABLE `bet`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `result`
+--
+ALTER TABLE `result`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `score`
 --
 ALTER TABLE `score`
@@ -154,13 +182,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `bet`
 --
 ALTER TABLE `bet`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT pour la table `result`
+--
+ALTER TABLE `result`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `score`
 --
 ALTER TABLE `score`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=278;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=296;
 
 --
 -- AUTO_INCREMENT pour la table `totalscore`

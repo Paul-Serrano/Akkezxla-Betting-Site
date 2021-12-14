@@ -27,12 +27,19 @@ catch (PDOException $e) {
 
 $resultDay = 1;
 
-for($i = 0; $i < count($result); $i++) {
-    if($result[$i]['gameday'] > $resultDay) {
-        $resultDay = $result[$i]['gameday'];
-        $gameDay = $resultDay + 1;
+if(!empty($result)) {
+    for($i = 0; $i < count($result); $i++) {
+        if($result[$i]['gameday'] > $resultDay) {
+            $resultDay = $result[$i]['gameday'];
+            $gameDay = $resultDay + 1;
+        }
     }
 }
+else {
+    $resultDay = 18;
+    $gameDay = $resultDay + 1;
+}
+
 
 $ticket1 = [];
 $ticket2 = [];

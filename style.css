@@ -485,6 +485,7 @@ label p {
 .update-result-btn {
   height: 20%;
   width: 10%;
+  font-size: 1.5em;
 }
 
 .top-update-form {
