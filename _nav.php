@@ -43,25 +43,25 @@ require_once "checkExistingTicket.php";
 
 <nav class="phone-nav">
 <?php    
-    if(true) {   
+    if(!empty($_SESSION)) {   
 ?>
-    <div class="nav-link" id="user">
-        <a><?php echo $_SESSION['user'];?></a>
+    <div class="nav-link" onclick="openParam()">
+        <a id="user"><?php echo $_SESSION['user'];?></a>
     </div> 
     <div class="user-param">
     <?php
     if(isset($userSurname) && in_array($userSurname, $existingUserSurname)) {
     ?>
-        <div class="nav-link"><a href="bet-panorama.php">Akkezxla Bet</a></div>
+        <button class="btn btn-success"><a href="bet-panorama.php">Akkezxla Bet</a></button>
     <?php
     }
     else {
     ?>
-        <div class="nav-link"><a href="bet-list.php">Akkezxla Bet</a></div>
+        <button class="btn btn-success"><a href="bet-list.php">Akkezxla Bet</a></button>
     <?php    
     }
     ?>
-        <div class="nav-link"><a href="ranking.php">Ranking</a></div>
+        <button class="btn btn-success"><a href="ranking.php">Ranking</a></button>
         <button class="btn btn-info"><a href="change-info.php">Change Info</a></button>
         <button class="log-out btn btn-danger"><a href="?logout">Log-out</a></button>
     </div>     

@@ -112,21 +112,17 @@ btn.on("click", (e) => {
     `);
 });
 
-// $(window).on("load", function () {
-//   $(".loader-wrapper").fadeOut("slow");
-// });
+$(window).on("load", function () {
+  $(".loader-wrapper").fadeOut("slow");
+});
 
 const userParam = $(".user-param");
 const navLink = $(".nav-link");
 const navPhone = $(".nav-phone");
 
-$("#user").click(function () {
-  if (userParam.css("visibility", "visible")) {
-    userParam.css("visibility", "hidden");
-  } else {
-    userParam.css("visibility", "visible");
-  }
-});
+function openParam() {
+  userParam[1].classList.toggle("visibility");
+}
 
 const upOpenerBtn = $(".update-opener-btn");
 const updateForm = $(".update-form-container");
@@ -140,6 +136,6 @@ upCloserBtn.click(function () {
   updateForm.css("display", "none");
 });
 
-console.log(userParam);
+console.log(userParam[1]);
 console.log(navLink);
 console.log(navPhone);

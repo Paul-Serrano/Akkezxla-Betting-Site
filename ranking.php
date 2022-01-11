@@ -8,12 +8,7 @@ require_once "ranking_post.php";
 
 <body>
     <main class="main-ranking">
-        <div class="akkezxla">
-            <?php 
-            if($_SESSION['user'] == 'Paulux') { 
-            ?>
-            <button class="btn btn-outline-info update-opener-btn" name="" type="button">Update Results/Score</button>
-            <div class="update-form-container">
+    <div class="update-form-container">
                 <div class="top-update-form">
                     <form action="ranking_post.php" class="update-score-form" method="POST">
                         <button class="btn btn-outline-success update-score-btn" name="update-score" type="submit">Update User Score</button>
@@ -76,6 +71,11 @@ require_once "ranking_post.php";
                     </div>
             </form>
             </div>
+        <div class="akkezxla">
+            <?php 
+            if($_SESSION['user'] == 'Paulux') { 
+            ?>
+            <button class="btn btn-outline-info update-opener-btn" name="" type="button">Update Results/Score</button>
             <?php
             }
             ?>

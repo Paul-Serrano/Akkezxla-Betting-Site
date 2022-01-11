@@ -28,13 +28,10 @@ img {
 
 .nav-link:hover {
   background-color: #00bc8c;
-}
-
-.nav-link:hover a {
   color: white;
 }
 
-#user a:hover {
+.nav-link:hover a {
   color: white;
 }
 
@@ -464,7 +461,7 @@ label p {
 }
 
 .update-form-container {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   display: none;
@@ -609,7 +606,7 @@ label p {
 
 /* potrait phone -- start */
 
-@media (max-width: 400px) {
+@media (max-width: 450px) {
   .phone-nav {
     display: flex;
     position: relative;
@@ -625,6 +622,11 @@ label p {
     padding: 2.5%;
   }
 
+  #user {
+    width: 80%;
+    margin: auto;
+  }
+
   .user-param {
     display: grid;
     visibility: hidden;
@@ -633,8 +635,13 @@ label p {
     grid-template-rows: 1fr 1fr;
     position: absolute;
     left: 2.5%;
-    border: solid 1px;
+    border: solid #00bc8c 5px;
+    border-top: none;
     padding: 0;
+  }
+
+  .visibility {
+    visibility: visible;
   }
 
   button a {
@@ -649,6 +656,101 @@ label p {
   .user-param .nav-link {
     width: 100%;
     padding: 0;
+  }
+
+  .sign-in-main {
+    height: 90vh;
+  }
+
+  .sign-up-main {
+    height: 100%;
+  }
+
+  .sign-in-form {
+    width: 90%;
+  }
+
+  .form-group {
+    flex-direction: column;
+  }
+
+  .sign-up-form {
+    margin: 10% auto;
+  }
+
+  .sign-up-label {
+    width: 100%;
+  }
+
+  .sign-up-input {
+    width: 100%;
+  }
+
+  .sign-up-btn {
+    width: 50%;
+    margin-top: 10%;
+  }
+
+  .user {
+    font-size: 1.15em;
+  }
+
+  .user-bet {
+    flex-direction: column;
+  }
+
+  .user-result {
+    margin-bottom: 1%;
+  }
+
+  .ticket-hr {
+    width: 90%;
+    margin: 5% 0;
+    border: solid white 1px;
+  }
+
+  .main-ranking {
+    height: 90vh;
+    width: 100%;
+  }
+
+  .akkezxla {
+    height: 90%;
+    width: 100%;
+  }
+
+  .akkezxla-ranking-wrapper {
+    margin: 0;
+  }
+
+  .result-wrapper {
+    width: 100%;
+  }
+
+  .akkezxla-ranking {
+    width: 100%;
+  }
+
+  .update-result-form-content {
+    flex-direction: column;
+  }
+
+  .update-result-btn {
+    order: -1;
+    width: 50%;
+  }
+
+  .match-block {
+    flex-direction: column;
+  }
+
+  .match-block p {
+    width: 100%;
+  }
+
+  .bet-block {
+    margin: auto;
+    width: 100%;
   }
 }
 

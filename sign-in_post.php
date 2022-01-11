@@ -5,7 +5,7 @@ session_start();
 
 require "connect.php";
 require "config.php";
-// require_once "checkExistingTicket.php";
+require_once "checkExistingTicket.php";
 
 
 if (empty($_POST['username']) || empty($_POST['pass'])) {
@@ -24,23 +24,6 @@ try {
     $reqVerifUsername->execute();
 
     $user = $reqVerifUsername->fetch();
-} catch (PDOException $e) {
-    $db = null;
-    echo 'Erreur : '.$e->getMessage();
-}
-
-try {
-    $verifExistingTicket = 'SELECT surname FROM bet Where gameday='.$gameDay.'';
-    $reqVerifExistingTicket = $db->prepare($verifExistingTicket);
-    $reqVerifExistingTicket->execute();
-
-    $existingTicket = $reqVerifExistingTicket->fetchAll();
-    $existingUserSurname = [];
-
-    for ($i = 0; $i < count($existingTicket); $i++) {
-        array_push($existingUserSurname, $existingTicket[$i]["surname"]);
-    }
-
 } catch (PDOException $e) {
     $db = null;
     echo 'Erreur : '.$e->getMessage();

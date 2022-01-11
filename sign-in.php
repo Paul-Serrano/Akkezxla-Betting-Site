@@ -25,7 +25,7 @@ if (isset($_GET["error"])) {
 ?>
 
 <body>
-    <main class="sign-up-main">
+    <main class="sign-in-main">
     <?php echo $alert ? "<div class='alert alert-{$type} mt-2'>{$message}</div>" : ''; ?>
         <form class="sign-in-form" action="sign-in_post.php" method="POST">
             <div class="form-group row">
