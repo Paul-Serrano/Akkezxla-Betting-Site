@@ -86,6 +86,8 @@ require_once "ranking_post.php";
                 <table class="result akkezxla-result">
                     <tr>
                         <th>GameDay <?php echo $gameDay - 1; ?></th>
+                        <th>t1</th>
+                        <th>t2</th>
                         <th>P</th>
                     </tr>
                 <?php
@@ -93,6 +95,8 @@ require_once "ranking_post.php";
                 ?>
                     <tr>
                         <td><?php echo $points[$i][1];?></td>
+                        <td><?php echo $points[$i][3];?></td>
+                        <td><?php echo $points[$i][4];?></td>
                         <td><?php echo $points[$i][2];?></td>
                     </tr>
                 <?php

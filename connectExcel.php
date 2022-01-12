@@ -36,7 +36,7 @@ if(!empty($result)) {
     }
 }
 else {
-    $resultDay = 18;
+    $resultDay = 20;
     $gameDay = $resultDay + 1;
 }
 
@@ -48,7 +48,8 @@ for($i = -8 + $gameDay*10; $i < -3 + $gameDay*10; $i++) {
     array_push($ticket1, [$resultSheet->getCell('A'.$i.'')->getValue(), $resultSheet->getCell('B'.$i.'')->getValue()]);
 }
 
-for($i = 2 + $gameDay*10; $i < 7 + $gameDay*10; $i++) {
+for($i = -3 + $gameDay*10; $i < 2 + $gameDay*10; $i++) {
     array_push($ticket2, [$resultSheet->getCell('A'.$i.'')->getValue(), $resultSheet->getCell('B'.$i.'')->getValue()]);
 }
+
 ?>

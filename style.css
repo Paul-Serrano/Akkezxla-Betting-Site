@@ -41,6 +41,7 @@ img {
   align-items: center;
   justify-content: center;
   width: 100%;
+  color: #00bc8c;
 }
 
 .nav-link {
@@ -70,6 +71,12 @@ img {
   border-top: none;
   padding: 5%;
   z-index: 1;
+  border: solid #00bc8c 5px;
+  border-top: none;
+}
+
+.user-param a {
+  color: white;
 }
 
 .user-param button {
@@ -449,7 +456,7 @@ label p {
 
 .akkezxla-result,
 .akkezxla-ranking {
-  width: 60%;
+  width: 80%;
   margin: auto;
   text-align: center;
   border: solid;
@@ -617,9 +624,8 @@ label p {
   }
 
   .nav-link {
-    width: 95%;
+    width: 100%;
     display: flex;
-    padding: 2.5%;
   }
 
   #user {
@@ -630,11 +636,10 @@ label p {
   .user-param {
     display: grid;
     visibility: hidden;
-    width: 95%;
+    width: 100%;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     position: absolute;
-    left: 2.5%;
     border: solid #00bc8c 5px;
     border-top: none;
     padding: 0;
@@ -751,6 +756,15 @@ label p {
   .bet-block {
     margin: auto;
     width: 100%;
+  }
+
+  .border-nav {
+    border-left: solid #00bc8c 5px;
+    border-right: solid #00bc8c 5px;
+  }
+
+  .bet-btn {
+    width: 60%;
   }
 }
 

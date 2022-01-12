@@ -15,25 +15,6 @@ catch (PDOException $e) {
     echo 'Erreur : '.$e->getMessage();
 }
 
-for($i = 1; $i < 6; $i++) {
-    $result1['result'][$i] = $result[0]['match'.$i.''];
-}
-
-for($i = 1; $i < 6; $i++) {
-    $j = $i + 5;
-    $result2['result'][$i] = $result[0]['match'.$j.''];
-}
-
-$resultDay = 1;
-
-for($i = 0; $i < count($result); $i++) {
-    if($result[$i]['gameday'] > $resultDay) {
-        $resultDay = $result[$i]['gameday'];
-        $gameDay = $resultDay + 1;
-    }
-}
-
-
 try {
     $viewUserBet = "SELECT gameday,surname,match1,match2,match3,match4,match5,match6,match7,match8,match9,match10 From bet Where gameday=".$resultDay."";
     $reqUserBet = $db->prepare($viewUserBet);
@@ -50,23 +31,34 @@ $ticket1Points = 0;
 $ticket2Points = 0;
 $points = [];
 
-for($j = 0; $j < count($userBet) ; $j++) {
-    for ($i = 1; $i < 6; $i++) {
-        if($result1['result'][$i] == $userBet[$j]["match".$i.""]) {
-            $ticket1Points++;
-        }
+if(count($result) != 0) {
+    for($i = 1; $i < 6; $i++) {
+        $result1['result'][$i] = $result[count($result) - 1]['match'.$i.''];
     }
-    for ($i = 1; $i < 6; $i++) {
-        $k = $i + 5;
-        if($result2['result'][$i] == $userBet[$j]["match".$k.""]) {
-            $ticket2Points++;
-        }
+    
+    for($i = 1; $i < 6; $i++) {
+        $j = $i + 5;
+        $result2['result'][$i] = $result[count($result) - 1]['match'.$j.''];
     }
-    $gamedayPoints = $ticket1Points + $ticket2Points;
-    array_push($points, [$userBet[$j]['gameday'], $userBet[$j]['surname'], $gamedayPoints, $ticket1Points, $ticket2Points]);
-    $gamedayPoints = 0;
-    $ticket1Points = 0;
-    $ticket2Points = 0;
+
+    for($j = 0; $j < count($userBet) ; $j++) {
+        for ($i = 1; $i < 6; $i++) {
+            if($result1['result'][$i] == $userBet[$j]["match".$i.""]) {
+                $ticket1Points++;
+            }
+        }
+        for ($i = 1; $i < 6; $i++) {
+            $k = $i + 5;
+            if($result2['result'][$i] == $userBet[$j]["match".$k.""]) {
+                $ticket2Points++;
+            }
+        }
+        $gamedayPoints = $ticket1Points + $ticket2Points;
+        array_push($points, [$userBet[$j]['gameday'], $userBet[$j]['surname'], $gamedayPoints, $ticket1Points, $ticket2Points]);
+        $gamedayPoints = 0;
+        $ticket1Points = 0;
+        $ticket2Points = 0;
+    }
 }
 
 if(isset($_POST['update-score'])) {

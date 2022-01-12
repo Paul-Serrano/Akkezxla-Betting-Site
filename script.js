@@ -118,10 +118,11 @@ $(window).on("load", function () {
 
 const userParam = $(".user-param");
 const navLink = $(".nav-link");
-const navPhone = $(".nav-phone");
+const navPhone = $(".phone-nav");
 
 function openParam() {
   userParam[1].classList.toggle("visibility");
+  navLink[3].classList.toggle("border-nav");
 }
 
 const upOpenerBtn = $(".update-opener-btn");
@@ -137,5 +138,5 @@ upCloserBtn.click(function () {
 });
 
 console.log(userParam[1]);
-console.log(navLink);
+console.log(navLink[3]);
 console.log(navPhone);
