@@ -342,71 +342,76 @@ label p {
   position: fixed;
   top: 0;
   left: 0;
-  background-color: #242f3f;
+  background-color: #121212;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1;
 }
 
-.loader {
+.loader-letter {
   display: inline-block;
-  width: 5%;
-  height: 15%;
-  position: relative;
-  border: 4px solid #fff;
-  animation: loader 2s infinite ease;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 4em;
+  font-family: arial;
+  font-weight: 600;
+  transform: scale(0.5);
+  color: #121212;
+  -webkit-text-stroke: 2px gray;
 }
 
-.loader-inner {
-  vertical-align: top;
-  display: inline-block;
-  width: 100%;
-  background-color: #fff;
-  animation: loader-inner 2s infinite ease-in;
+.loader-letter:nth-child(1) {
+  animation: var(--effect);
 }
 
-@keyframes loader {
+.loader-letter:nth-child(2) {
+  animation: var(--effect) 0.075s;
+}
+
+.loader-letter:nth-child(3) {
+  animation: var(--effect) 0.15s;
+}
+
+.loader-letter:nth-child(4) {
+  animation: var(--effect) 0.225s;
+}
+
+.loader-letter:nth-child(5) {
+  animation: var(--effect) 0.3s;
+}
+
+.loader-letter:nth-child(6) {
+  animation: var(--effect) 0.375s;
+}
+
+.loader-letter:nth-child(7) {
+  animation: var(--effect) 0.45s;
+}
+
+:root {
+  --effect: hover 0.75s linear infinite;
+}
+
+@keyframes hover {
   0% {
-    transform: rotate(0deg);
+    transform: scale(0.5);
+    color: #121212;
+    -webkit-text-stroke: 2px gray;
   }
 
-  25% {
-    transform: rotate(180deg);
+  20% {
+    transform: scale(1);
+    color: pink;
+    -webkit-text-stroke: 3px red;
+    filter: drop-shadow(0 0 1px black) drop-shadow(0 0 1px black)
+      drop-shadow(0 0 3px red) drop-shadow(0 0 5px red) hue-rotate(10turn);
   }
 
   50% {
-    transform: rotate(180deg);
-  }
-
-  75% {
-    transform: rotate(360deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes loader-inner {
-  0% {
-    height: 0%;
-  }
-
-  25% {
-    height: 0%;
-  }
-
-  50% {
-    height: 100%;
-  }
-
-  75% {
-    height: 100%;
-  }
-
-  100% {
-    height: 0%;
+    transform: scale(0.5);
+    color: #121212;
+    -webkit-text-stroke: 2px gray;
   }
 }
 

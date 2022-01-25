@@ -36,7 +36,7 @@ if(!empty($result)) {
     }
 }
 else {
-    $resultDay = 20;
+    $resultDay = 22;
     $gameDay = $resultDay + 1;
 }
 
