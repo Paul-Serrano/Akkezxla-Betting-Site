@@ -3,7 +3,7 @@
 require "dev.env.php";
 
 //? Méthode variables d'environnement : plus safe
-$db_string = "mysql:dbname=" . DATABASE . ";host=" . SERVER;
+$db_string = "mysql:dbname=".DATABASE.";host=".SERVER;
 
 //? Méthode chaine complète (ne surtout pas push ceci sur GitHub avec des variables de prod)
 // $connexion_string = "mysql:dbname=carrefive;host=localhost";

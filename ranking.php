@@ -73,7 +73,7 @@ require_once "ranking_post.php";
             </div>
         <div class="akkezxla">
             <?php 
-            if($_SESSION['user'] == 'Paulux') { 
+            if($_SESSION && $_SESSION['user'] == 'Paulux') { 
             ?>
             <button class="btn btn-outline-info update-opener-btn" name="" type="button">Update Results/Score</button>
             <?php

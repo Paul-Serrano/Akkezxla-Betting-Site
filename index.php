@@ -1,10 +1,12 @@
 <?php
 
+require_once "connect.php";
+require_once "config.php";
 include_once "_head.php";
 
-session_destroy();
 
-header('Location:sign-in.php');
+header('Location:bet-list.php');
+
 
 
 ?>

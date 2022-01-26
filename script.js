@@ -116,12 +116,18 @@ $(window).on("load", function () {
   $(".loader-wrapper").fadeOut("slow");
 });
 
-const userParam = $(".user-param");
+const userParamOn = $(".user-param-online");
+const userParamOff = $(".user-param-offline");
 const navLink = $(".nav-link");
 const navPhone = $(".phone-nav");
 
-function openParam() {
-  userParam[1].classList.toggle("visibility");
+function openParamOn() {
+  userParamOn[0].classList.toggle("visibility");
+  navLink[3].classList.toggle("border-nav");
+}
+
+function openParamOff() {
+  userParamOff[0].classList.toggle("visibility");
   navLink[3].classList.toggle("border-nav");
 }
 
@@ -136,7 +142,3 @@ upOpenerBtn.click(function () {
 upCloserBtn.click(function () {
   updateForm.css("display", "none");
 });
-
-console.log(userParam[1]);
-console.log(navLink[3]);
-console.log(navPhone);

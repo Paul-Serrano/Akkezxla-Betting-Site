@@ -51,11 +51,15 @@ img {
   display: flex;
 }
 
+#user:hover .user-param-online,
+#user:hover .user-param-offline,
 #user:hover .user-param {
   display: flex;
   flex-direction: column;
 }
 
+.user-param-offline,
+.user-param-online,
 .user-param {
   display: none;
   position: absolute;
@@ -75,10 +79,14 @@ img {
   border-top: none;
 }
 
+.user-param-online a,
+.user-param-offline a,
 .user-param a {
   color: white;
 }
 
+.user-param-online button,
+.user-param-offline button,
 .user-param button {
   width: 75%;
   margin: auto;
@@ -638,6 +646,8 @@ label p {
     margin: auto;
   }
 
+  .user-param-online,
+  .user-param-offline,
   .user-param {
     display: grid;
     visibility: hidden;
@@ -663,6 +673,8 @@ label p {
     visibility: visible;
   }
 
+  .user-param-online .nav-link,
+  .user-param-offline .nav-link,
   .user-param .nav-link {
     width: 100%;
     padding: 0;

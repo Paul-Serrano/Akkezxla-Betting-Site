@@ -43,12 +43,22 @@ require_once "checkExistingTicket.php";
 
 <nav class="phone-nav">
 <?php    
-    if(!empty($_SESSION)) {   
+    if($_SESSION) {   
 ?>
-    <div class="nav-link" onclick="openParam()">
-        <a id="user"><?php echo $_SESSION['user'];?></a>
+    <div class="nav-link" onclick="openParamOn()">
+        <a id="user">
+        <?php 
+            if($_SESSION['user']) {
+                echo $_SESSION['user'];
+            }
+            else {
+                $welcome = "Welcome";
+                echo $welcome;
+            }
+        ?>
+        </a>
     </div> 
-    <div class="user-param">
+    <div class="user-param-online user-param">
     <?php
     if(isset($userSurname) && in_array($userSurname, $existingUserSurname)) {
     ?>
@@ -69,7 +79,20 @@ require_once "checkExistingTicket.php";
     }
     else {
     ?>
-    <div class="nav-link"><a href="sign-in.php">Sign Up/Sign In</a></div>
+    <div class="nav-link" onclick="openParamOff()">
+        <a id="user">
+        <?php 
+            $welcome = "Welcome";
+            echo $welcome;
+        ?>
+        </a>
+    </div> 
+    <div class="user-param-offline user-param">
+        <button class="btn btn-success"><a href="bet-list.php">Akkezxla Bet</a></button>
+        <button class="btn btn-success"><a href="ranking.php">Ranking</a></button>
+        <button class="btn btn-info"><a href="sign-in.php">Log In</a></button>
+        <button class="log-out btn btn-info"><a href="sign-up.php">Sign up</a></button>
+    </div>   
     <?php }
-    ?>
+    ?>  
 </nav>

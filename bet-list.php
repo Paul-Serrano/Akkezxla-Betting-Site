@@ -4,6 +4,11 @@ include_once "_head.php";
 include_once "_nav.php";
 require "connectExcel.php";
 
+$viewBet = "SELECT * from bet Where gameday=".$gameDay."";
+$reqViewBet = $db->prepare($viewBet);
+$betSubmit = $reqViewBet->execute();
+$bet = $reqViewBet->fetchAll();
+
 ?>
 </div>
 
@@ -67,7 +72,13 @@ require "connectExcel.php";
                         }?>
                         </div>
                     </div>
-                    <button type="button" name="" class="btn btn-light bet-btn">Submit your bet !</button>
+                    <?php 
+                    if($_SESSION && !isset($bet)) {
+                        ?>
+                            <button type="button" name="" class="btn btn-light bet-btn">Submit your bet !</button>
+                        <?php
+                    }
+                    ?>
                 </form>
             </div>
         </section>
