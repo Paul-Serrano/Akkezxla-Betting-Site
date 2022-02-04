@@ -42,7 +42,7 @@ if ($user) {
             header('Location:bet-list.php');
         }
         else {
-            header('Location:bet-panorama.php');
+            header('Location:index.php');
         }
         
     }

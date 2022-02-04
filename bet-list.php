@@ -73,7 +73,7 @@ $bet = $reqViewBet->fetchAll();
                         </div>
                     </div>
                     <?php 
-                    if($_SESSION && !isset($bet)) {
+                    if($_SESSION && !in_array($_SESSION['surname'], $existingUserSurname) ) {
                         ?>
                             <button type="button" name="" class="btn btn-light bet-btn">Submit your bet !</button>
                         <?php
