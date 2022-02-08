@@ -99,7 +99,7 @@ if(isset($_POST['update-score'])) {
     header('Location:ranking.php');
 }
 
-if(isset($_POST['update-result'])) {
+if(isset($_POST["update-result"])) {
     try {
         $insertResult = "INSERT INTO result (gameday, match1, match2, match3, match4, match5, match6, match7, match8, match9, match10)
         VALUES (:gameday, :match1, :match2, :match3, :match4, :match5, :match6, :match7, :match8, :match9, :match10)";

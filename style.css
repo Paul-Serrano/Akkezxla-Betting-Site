@@ -55,13 +55,13 @@ img {
 #user:hover .user-param-offline,
 #user:hover .user-param {
   display: flex;
-  flex-direction: column;
 }
 
 .user-param-offline,
 .user-param-online,
 .user-param {
   display: none;
+  flex-direction: column;
   position: absolute;
   background-color: white;
   height: 250%;
@@ -73,7 +73,7 @@ img {
   justify-content: space-evenly;
   border: solid;
   border-top: none;
-  padding: 5%;
+  padding: 2.5%;
   z-index: 1;
   border: solid #00bc8c 5px;
   border-top: none;
@@ -637,12 +637,13 @@ label p {
   }
 
   .nav-link {
+    padding: 0.25em;
     width: 100%;
     display: flex;
   }
 
   #user {
-    width: 80%;
+    width: 100%;
     margin: auto;
   }
 

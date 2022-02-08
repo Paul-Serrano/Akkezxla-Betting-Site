@@ -48,13 +48,7 @@ require_once "checkExistingTicket.php";
     <div class="nav-link" onclick="openParamOn()">
         <a id="user">
         <?php 
-            if($_SESSION['user']) {
                 echo $_SESSION['user'];
-            }
-            else {
-                $welcome = "Welcome";
-                echo $welcome;
-            }
         ?>
         </a>
     </div> 
@@ -82,7 +76,7 @@ require_once "checkExistingTicket.php";
     <div class="nav-link" onclick="openParamOff()">
         <a id="user">
         <?php 
-            $welcome = "Welcome";
+            $welcome = "Welcome, please sign up to bet !";
             echo $welcome;
         ?>
         </a>
